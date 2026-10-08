@@ -13,13 +13,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@200;300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/style.css?v=934cc5ba">
+  <link rel="stylesheet" href="../assets/css/style.css?v=4a5e6b16">
   <script>
     (function (h) {
       h.classList.add('js');
       if (!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) h.classList.add('motion');
+      /* La entrada del logo se decide antes de pintar: si no, la home asoma un instante antes. */
+      try { if (false && h.classList.contains('motion') && sessionStorage.getItem('engler-intro') !== '1') h.classList.add('intro-play'); } catch (e) {}
       /* Si el script no llega, nada se queda escondido. */
-      setTimeout(function () { if (!window.ENGLER) h.classList.remove('motion'); }, 4000);
+      setTimeout(function () { if (!window.ENGLER) h.classList.remove('motion', 'intro-play'); }, 4000);
       try { localStorage.setItem('engler-lang', 'fr'); } catch (e) {}
     })(document.documentElement);
   </script>
@@ -136,6 +138,6 @@
     </div>
   </footer>
   <script src="../assets/js/lenis.min.js" defer></script>
-  <script src="../assets/js/site.js?v=934cc5ba" defer></script>
+  <script src="../assets/js/site.js?v=4a5e6b16" defer></script>
 </body>
 </html>

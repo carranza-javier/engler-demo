@@ -373,11 +373,9 @@
 
   function runIntro(done) {
     const intro = document.querySelector('[data-intro]');
-    let seen = false;
-    try { seen = sessionStorage.getItem('engler-intro') === '1'; } catch (e) {}
-    if (!intro || seen || calm) { done(); return; }
+    // El <head> ya ha puesto intro-play (antes de pintar) si toca verla.
+    if (!intro || !root.classList.contains('intro-play')) { done(); return; }
     try { sessionStorage.setItem('engler-intro', '1'); } catch (e) {}
-    root.classList.add('intro-play');
     if (lenis) lenis.stop();
     setTimeout(() => intro.classList.add('is-logo'), 150);
     setTimeout(function () { intro.classList.add('is-out'); done(); }, 2300);
