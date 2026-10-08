@@ -277,15 +277,16 @@ strong {
   transform: none;
 }
 
+/* Salida: el logo sube y se apaga, y luego el negro se disuelve sobre la home. */
 .intro.is-out {
-  clip-path: inset(0 0 100% 0);
-  transition: clip-path 1.8s var(--drift);
+  opacity: 0;
+  transition: opacity 2.8s var(--drift) 0.5s;
 }
 
 .intro.is-out img {
   opacity: 0;
-  transform: translateY(-30px);
-  transition: opacity 1s var(--calm), transform 1.6s var(--calm);
+  transform: translateY(-16px);
+  transition: opacity 1.4s var(--calm), transform 2.4s var(--calm);
 }
 
 /* ---------- Barra ---------- */
@@ -881,6 +882,60 @@ strong {
 
 .motion .hero.is-in .hero__line--r {
   transition-delay: 0.25s;
+}
+
+/* Entrada de la home por capas, mientras se disuelve el negro de la intro.
+   Opacidad y translate en piezas que el scroll no toca (el scroll escribe
+   transform y opacity en las líneas, el pie y el lema). */
+.motion .hero__glow,
+.motion .arch,
+.motion .hero__name,
+.motion .hero__scroll {
+  opacity: 0;
+  transition: opacity 2.8s var(--drift);
+}
+
+.motion .hero__glow { transition-delay: 0.2s; }
+.motion .hero__scroll { transition-delay: 2s; }
+
+.motion .hero__name {
+  translate: 0 4vh;
+  transition: opacity 2.6s var(--drift) 0.7s, translate 3.4s var(--calm) 0.7s;
+}
+
+.motion .arch__slides {
+  transform: scale(1.1);
+  transition: transform 4.5s var(--calm);
+}
+
+.motion .hero__caption,
+.motion .hero__tag {
+  filter: opacity(0);
+  transition: filter 2.4s var(--drift) 1.6s;
+}
+
+.motion .hero.is-in .hero__glow,
+.motion .hero.is-in .arch,
+.motion .hero.is-in .hero__name,
+.motion .hero.is-in .hero__scroll {
+  opacity: 1;
+}
+
+.motion .hero.is-in .hero__name { translate: none; }
+.motion .hero.is-in .arch__slides { transform: none; }
+
+.motion .hero.is-in .hero__caption,
+.motion .hero.is-in .hero__tag {
+  filter: none;
+}
+
+/* La barra espera a la home solo si hay entrada con logo. */
+.motion .has-intro .bar {
+  transition: transform 1.2s var(--calm), background 1.2s var(--calm), opacity 2.4s var(--drift) 1.8s;
+}
+
+.motion.intro-play .has-intro:not(.is-entered) .bar {
+  opacity: 0;
 }
 
 .hero__caption {

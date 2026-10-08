@@ -379,10 +379,8 @@
     if (lenis) lenis.stop();
     setTimeout(() => intro.classList.add('is-logo'), 150);
     setTimeout(function () { intro.classList.add('is-out'); done(); }, 2300);
-    setTimeout(function () {
-      root.classList.remove('intro-play');
-      if (lenis) lenis.start();
-    }, 4200);
+    setTimeout(() => { if (lenis) lenis.start(); }, 4000);
+    setTimeout(() => root.classList.remove('intro-play'), 5900);  // el negro acaba de irse a los ~5,6 s
   }
 
   /* ---------- Columnas de obras en orden ---------- */
@@ -571,6 +569,7 @@
     runIntro(function () {
       const hero = document.querySelector('[data-hero]');
       if (hero) setTimeout(() => hero.classList.add('is-in'), 200);
+      document.body.classList.add('is-entered');
       watchReveals();
     });
   }
