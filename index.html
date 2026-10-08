@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex, follow">
+  <title>Martin Engler Official Art Site - Corporate Art</title>
+  <meta http-equiv="refresh" content="0; url=fr/index.html">
+  <script>
+    (function () {
+      var lang = 'fr';
+      try { lang = localStorage.getItem('engler-lang') || ''; } catch (e) {}
+      if (!lang) {
+        var nav = (navigator.language || 'fr').slice(0, 2);
+        lang = nav === 'de' ? 'de' : nav === 'en' ? 'en' : 'fr';
+      }
+      location.replace(lang + '/index.html');
+    })();
+  </script>
+</head>
+<body style="background:#0b0a0a"></body>
+</html>
